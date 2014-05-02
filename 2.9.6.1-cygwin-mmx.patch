@@ -1,0 +1,20 @@
+--- origsrc/hexchat-2.9.6.1/src/fe-gtk/mmx_cmod.S	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/src/fe-gtk/mmx_cmod.S	2014-05-02 10:20:39.573737600 -0500
+@@ -35,7 +35,7 @@
+ #define gm	28(%ebp)
+ #define bm	32(%ebp)
+ 
+-#ifdef UNDERSCORE_SYMBOLS /* need this to link with msvc */
++#if defined(_WIN32) || defined(__CYGWIN__) /* need this to link with msvc */
+ #define SHADE_XIMAGE_15 _shade_ximage_15_mmx
+ #define SHADE_XIMAGE_16 _shade_ximage_16_mmx
+ #define SHADE_XIMAGE_32 _shade_ximage_32_mmx
+@@ -524,7 +524,7 @@ HAVE_MMX:
+ 	popl	%ebx
+ 	ret
+ 
+-#if defined(__GNUC__) && !defined(_WIN32)
++#if defined(__GNUC__) && !defined(_WIN32) && !defined(__CYGWIN__)
+ .section .note.GNU-stack, "", @progbits
+ .previous
+ #endif

@@ -1,0 +1,31 @@
+NAME="hexchat"
+VERSION=2.9.6.1
+RELEASE=1
+CATEGORY="Net"
+SUMMARY="GTK+ IRC client"
+DESCRIPTION="HexChat is an IRC client based on XChat."
+HOMEPAGE="http://hexchat.org/"
+SRC_URI="http://dl.hexchat.org/hexchat/hexchat-${VERSION}.tar.xz"
+PATCH_URI="
+	2.9.6.1-cygwin-cpuinfo.patch
+	2.9.6.1-cygwin-fork.patch
+	2.9.6.1-cygwin-mmx.patch
+	2.9.6.1-gettext.patch
+	2.9.6.1-perl-xs.patch
+	2.9.6.1-plugins-dll.patch
+	2.9.6.1-plugins-no-undefined.patch
+	2.9.6.1-vpath.patch
+"
+
+CYGCONF_ARGS="--enable-spell=gtkspell"
+
+PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-perl ${NAME}-python"
+hexchat_CONTENTS="--exclude=perl.* --exclude=python.* etc/ usr/bin/ usr/lib/hexchat/ usr/share/"
+hexchat_devel_SUMMARY="${SUMMARY} (plugin development)"
+hexchat_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
+hexchat_perl_SUMMARY="${SUMMARY} (Perl plugin)"
+hexchat_perl_CONTENTS="usr/lib/hexchat/plugins/perl.dll"
+hexchat_python_SUMMARY="${SUMMARY} (Python plugin)"
+hexchat_python_CONTENTS="usr/lib/hexchat/plugins/python.dll"
+
+DIFF_EXCLUDES="inline_pngs.h *.pm.h"

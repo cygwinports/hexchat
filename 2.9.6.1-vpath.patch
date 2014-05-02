@@ -1,0 +1,40 @@
+--- origsrc/hexchat-2.9.6.1/plugins/perl/Makefile.am	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/plugins/perl/Makefile.am	2014-05-02 10:30:11.887912200 -0500
+@@ -15,4 +15,4 @@ CLEANFILES = xchat.pm.h irc.pm.h
+ xchat.pm.h irc.pm.h: lib/Xchat.pm lib/Xchat/Embed.pm \
+ 	lib/Xchat/List/Network.pm lib/Xchat/List/Network/Entry.pm \
+ 	lib/Xchat/List/Network/AutoJoin.pm lib/IRC.pm
+-	perl generate_header
++	cd $(srcdir); perl generate_header
+--- origsrc/hexchat-2.9.6.1/src/common/Makefile.am	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/src/common/Makefile.am	2014-05-02 10:34:59.329912700 -0500
+@@ -64,6 +64,6 @@ libhexchatcommon_a_CFLAGS = $(LIBPROXY_C
+ textenums.h: textevents.h
+ 
+ textevents.h: textevents.in make-te
+-	./make-te < textevents.in > textevents.h 2> textenums.h
++	./make-te < $(srcdir)/textevents.in > textevents.h 2> textenums.h
+ 
+ BUILT_SOURCES = textenums.h textevents.h
+--- origsrc/hexchat-2.9.6.1/src/common/hexchat.h	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/src/common/hexchat.h	2014-05-02 10:36:04.883737000 -0500
+@@ -20,7 +20,7 @@
+ #ifdef WIN32
+ #include "../../config-win32.h"
+ #else
+-#include "../../config.h"
++#include "config.h"
+ #endif
+ 
+ #include <glib.h>
+--- origsrc/hexchat-2.9.6.1/src/fe-gtk/Makefile.am	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/src/fe-gtk/Makefile.am	2014-05-02 10:37:13.743481100 -0500
+@@ -2,7 +2,7 @@ localedir = $(datadir)/locale
+ 
+ bin_PROGRAMS = hexchat
+ 
+-AM_CPPFLAGS = $(GUI_CFLAGS) -DLOCALEDIR=\"$(localedir)\"
++AM_CPPFLAGS = $(GUI_CFLAGS) -I../common -DLOCALEDIR=\"$(localedir)\"
+ 
+ hexchat_LDADD = ../common/libhexchatcommon.a $(GUI_LIBS)
+ 

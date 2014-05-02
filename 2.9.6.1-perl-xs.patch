@@ -1,0 +1,162 @@
+--- origsrc/hexchat-2.9.6.1/plugins/perl/perl.c	2013-09-11 17:18:19.000000000 -0500
++++ src/hexchat-2.9.6.1/plugins/perl/perl.c	2014-05-02 10:38:43.917431700 -0500
+@@ -623,7 +623,6 @@ print_cb (char *word[], void *userdata)
+  *
+  */
+ 
+-static
+ XS (XS_Xchat_register)
+ {
+ 	char *name, *version, *desc, *filename;
+@@ -648,7 +647,6 @@ XS (XS_Xchat_register)
+ 
+ 
+ /* Xchat::print(output) */
+-static
+ XS (XS_Xchat_print)
+ {
+ 
+@@ -664,7 +662,6 @@ XS (XS_Xchat_print)
+ 	XSRETURN_EMPTY;
+ }
+ 
+-static
+ XS (XS_Xchat_emit_print)
+ {
+ 	char *event_name;
+@@ -718,7 +715,6 @@ XS (XS_Xchat_emit_print)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_send_modes)
+ {
+ 	AV *p_targets = NULL;
+@@ -770,7 +766,6 @@ XS (XS_Xchat_send_modes)
+ 		free (targets);
+ 	}
+ }
+-static
+ XS (XS_Xchat_get_info)
+ {
+ 	SV *temp = NULL;
+@@ -809,7 +804,6 @@ XS (XS_Xchat_get_info)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_context_info)
+ {
+ 	const char *const *fields;
+@@ -823,7 +817,6 @@ XS (XS_Xchat_context_info)
+ 	XSRETURN (1);
+ }
+ 
+-static
+ XS (XS_Xchat_get_prefs)
+ {
+ 	const char *str;
+@@ -861,7 +854,6 @@ XS (XS_Xchat_get_prefs)
+ }
+ 
+ /* Xchat::Internal::hook_server(name, priority, callback, userdata) */
+-static
+ XS (XS_Xchat_hook_server)
+ {
+ 
+@@ -902,7 +894,6 @@ XS (XS_Xchat_hook_server)
+ }
+ 
+ /* Xchat::Internal::hook_command(name, priority, callback, help_text, userdata) */
+-static
+ XS (XS_Xchat_hook_command)
+ {
+ 	char *name;
+@@ -951,7 +942,6 @@ XS (XS_Xchat_hook_command)
+ }
+ 
+ /* Xchat::Internal::hook_print(name, priority, callback, [userdata]) */
+-static
+ XS (XS_Xchat_hook_print)
+ {
+ 
+@@ -990,7 +980,6 @@ XS (XS_Xchat_hook_print)
+ }
+ 
+ /* Xchat::Internal::hook_timer(timeout, callback, userdata) */
+-static
+ XS (XS_Xchat_hook_timer)
+ {
+ 	int timeout;
+@@ -1029,7 +1018,6 @@ XS (XS_Xchat_hook_timer)
+ }
+ 
+ /* Xchat::Internal::hook_fd(fd, callback, flags, userdata) */
+-static
+ XS (XS_Xchat_hook_fd)
+ {
+ 	int fd;
+@@ -1082,7 +1070,6 @@ XS (XS_Xchat_hook_fd)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_unhook)
+ {
+ 	hexchat_hook *hook;
+@@ -1118,7 +1105,6 @@ XS (XS_Xchat_unhook)
+ }
+ 
+ /* Xchat::Internal::command(command) */
+-static
+ XS (XS_Xchat_command)
+ {
+ 	char *cmd = NULL;
+@@ -1134,7 +1120,6 @@ XS (XS_Xchat_command)
+ 	XSRETURN_EMPTY;
+ }
+ 
+-static
+ XS (XS_Xchat_find_context)
+ {
+ 	char *server = NULL;
+@@ -1190,7 +1175,6 @@ XS (XS_Xchat_find_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_get_context)
+ {
+ 	dXSARGS;
+@@ -1201,7 +1185,6 @@ XS (XS_Xchat_get_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_set_context)
+ {
+ 	hexchat_context *ctx;
+@@ -1214,7 +1197,6 @@ XS (XS_Xchat_set_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_nickcmp)
+ {
+ 	dXSARGS;
+@@ -1226,7 +1208,6 @@ XS (XS_Xchat_nickcmp)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_get_list)
+ {
+ 	SV *name;
+@@ -1267,7 +1248,6 @@ XS (XS_Xchat_get_list)
+ 	}
+ }
+ 
+-static
+ XS (XS_Xchat_Embed_plugingui_remove)
+ {
+ 	void *gui_entry;
