@@ -30,19 +30,19 @@
 --- origsrc/hexchat-2.9.6.1/src/common/plugin.c	2013-09-11 17:18:19.000000000 -0500
 +++ src/hexchat-2.9.6.1/src/common/plugin.c	2014-05-02 10:24:50.372084900 -0500
 @@ -499,15 +499,16 @@ plugin_auto_load (session *sess)
- 	for_files (HEXCHATLIBDIR, "hcsysinfo.dll", plugin_auto_load_cb);
+ 	for_files (lib_dir, "hcsysinfo.dll", plugin_auto_load_cb);
  
  	for_files (sub_dir, "*.dll", plugin_auto_load_cb);
 -#else
 -#if defined(__hpux)
 +#elif defined(__CYGWIN__)
-+	for_files (HEXCHATLIBDIR, "*.dll", plugin_auto_load_cb);
++	for_files (lib_dir, "*.dll", plugin_auto_load_cb);
 +	for_files (sub_dir, "*.dll", plugin_auto_load_cb);
 +#elif defined(__hpux)
- 	for_files (HEXCHATLIBDIR, "*.sl", plugin_auto_load_cb);
+ 	for_files (lib_dir, "*.sl", plugin_auto_load_cb);
  	for_files (sub_dir, "*.sl", plugin_auto_load_cb);
  #else
- 	for_files (HEXCHATLIBDIR, "*.so", plugin_auto_load_cb);
+ 	for_files (lib_dir, "*.so", plugin_auto_load_cb);
  	for_files (sub_dir, "*.so", plugin_auto_load_cb);
  #endif
 -#endif

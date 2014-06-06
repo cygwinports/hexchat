@@ -32,18 +32,6 @@
 +fishlim_la_LDFLAGS = -avoid-version -module -no-undefined
 +fishlim_la_LIBADD = $(COMMON_LIBS)
  AM_CPPFLAGS = $(COMMON_CFLAGS) -I$(srcdir)/../../src/common
---- origsrc/hexchat-2.9.6.1/plugins/mailcheck/Makefile.am	2013-09-11 17:18:19.000000000 -0500
-+++ src/hexchat-2.9.6.1/plugins/mailcheck/Makefile.am	2014-05-02 10:28:32.004228600 -0500
-@@ -19,7 +19,8 @@ libdir = $(hexchatdir)/plugins
- 
- lib_LTLIBRARIES = mailcheck.la
- mailcheck_la_SOURCES = mailcheck.c
--mailcheck_la_LDFLAGS = -avoid-version -module 
-+mailcheck_la_LDFLAGS = -avoid-version -module -no-undefined
-+mailcheck_la_LIBADD = $(COMMON_LIBS)
- INCLUDES = $(COMMON_CFLAGS) $(PLUGIN_INCLUDES)
- 
- DISTCLEANFILES = pg_dir/*
 --- origsrc/hexchat-2.9.6.1/plugins/perl/Makefile.am	2013-09-11 17:18:19.000000000 -0500
 +++ src/hexchat-2.9.6.1/plugins/perl/Makefile.am	2014-05-02 10:30:11.887912200 -0500
 @@ -6,8 +6,8 @@ libdir = $(hexchatlibdir)
@@ -54,7 +42,7 @@
 -perl_la_LIBADD = $(PERL_LDFLAGS)
 +perl_la_LDFLAGS = -avoid-version -module -no-undefined
 +perl_la_LIBADD = $(PERL_LDFLAGS) $(COMMON_LIBS)
- BUILT_SOURCES = xchat.pm.h irc.pm.h
+ BUILT_SOURCES = hexchat.pm.h irc.pm.h
  #CFLAGS = @CFLAGS@ -Wno-unused
  AM_CPPFLAGS = $(PERL_CFLAGS) $(COMMON_CFLAGS) -I$(srcdir)/../../src/common
 --- origsrc/hexchat-2.9.6.1/plugins/python/Makefile.am	2013-09-11 17:18:19.000000000 -0500
@@ -68,17 +56,6 @@
 +python_la_LDFLAGS = -avoid-version -module -no-undefined
 +python_la_LIBADD = $(PY_LIBS) $(COMMON_LIBS)
  AM_CPPFLAGS = $(PY_CFLAGS) $(COMMON_CFLAGS) -I$(srcdir)/../../src/common
- 
---- origsrc/hexchat-2.9.6.1/plugins/xdcc/Makefile.am	2013-09-11 17:18:19.000000000 -0500
-+++ src/hexchat-2.9.6.1/plugins/xdcc/Makefile.am	2014-05-02 10:28:55.327190300 -0500
-@@ -2,6 +2,7 @@ libdir = $(hexchatdir)
- 
- lib_LTLIBRARIES = xdcc.la
- xdcc_la_SOURCES = xdcc.c
--xdcc_la_LDFLAGS = -avoid-version -module 
-+xdcc_la_LDFLAGS = -avoid-version -module -no-undefined
-+xdcc_la_LIBADD = $(COMMON_LIBS)
- INCLUDES = $(COMMON_CFLAGS) -I$(srcdir)/..
  
 --- origsrc/hexchat-2.9.6.1/src/common/hexchat-plugin.h	2013-09-11 17:18:19.000000000 -0500
 +++ src/hexchat-2.9.6.1/src/common/hexchat-plugin.h	2014-05-02 10:29:40.485424600 -0500
