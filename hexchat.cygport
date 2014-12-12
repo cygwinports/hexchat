@@ -1,11 +1,11 @@
 NAME="hexchat"
-VERSION=2.10.1
+VERSION=2.10.2
 RELEASE=1
 CATEGORY="Net"
 SUMMARY="GTK+ IRC client"
 DESCRIPTION="HexChat is an IRC client based on XChat."
 HOMEPAGE="http://hexchat.org/"
-SRC_URI="http://dl.hexchat.org/hexchat/hexchat-${VERSION}.tar.xz"
+SRC_URI="https://dl.hexchat.net/hexchat/hexchat-${VERSION}.tar.xz"
 PATCH_URI="
 	2.9.6.1-cygwin-cpuinfo.patch
 	2.9.6.1-cygwin-fork.patch
