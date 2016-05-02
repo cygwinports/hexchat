@@ -1,27 +1,29 @@
 NAME="hexchat"
-VERSION=2.10.2
-RELEASE=2
+VERSION=2.12.1
+RELEASE=1
 CATEGORY="Net"
 SUMMARY="GTK+ IRC client"
 DESCRIPTION="HexChat is an IRC client based on XChat."
 HOMEPAGE="http://hexchat.org/"
 SRC_URI="https://dl.hexchat.net/hexchat/hexchat-${VERSION}.tar.xz"
 PATCH_URI="
-	2.9.6.1-cygwin-cpuinfo.patch
-	2.9.6.1-cygwin-fork.patch
 	2.10.0-perl-xs.patch
-	2.9.6.1-plugins-dll.patch
-	2.9.6.1-plugins-no-undefined.patch
-	2.10.0-vpath.patch
+	2.12.1-no-undefined.patch
 "
 
-PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-perl ${NAME}-python"
-hexchat_CONTENTS="--exclude=perl.* --exclude=python.* etc/ usr/bin/ usr/lib/hexchat/ usr/share/"
+PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-lua ${NAME}-perl ${NAME}-python"
+hexchat_CONTENTS="--exclude=lua.* --exclude=perl.* --exclude=python.* etc/ usr/bin/ usr/lib/hexchat/ usr/share/"
 hexchat_devel_SUMMARY="${SUMMARY} (plugin development)"
+hexchat_devel_REQUIRES=${NAME}
 hexchat_devel_CONTENTS="usr/include/ usr/lib/pkgconfig/"
-hexchat_perl_SUMMARY="${SUMMARY} (Perl plugin)"
+hexchat_lua_SUMMARY="${SUMMARY} (Lua scripting plugin)"
+hexchat_lua_REQUIRES=${NAME}
+hexchat_lua_CONTENTS="usr/lib/hexchat/plugins/lua.dll"
+hexchat_perl_SUMMARY="${SUMMARY} (Perl scripting plugin)"
+hexchat_perl_REQUIRES=${NAME}
 hexchat_perl_CONTENTS="usr/lib/hexchat/plugins/perl.dll"
-hexchat_python_SUMMARY="${SUMMARY} (Python plugin)"
+hexchat_python_SUMMARY="${SUMMARY} (Python scripting plugin)"
+hexchat_python_REQUIRES=${NAME}
 hexchat_python_CONTENTS="usr/lib/hexchat/plugins/python.dll"
 
 DIFF_EXCLUDES="inline_pngs.h *.pm.h"
