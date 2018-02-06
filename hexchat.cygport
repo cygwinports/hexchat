@@ -1,6 +1,6 @@
 NAME="hexchat"
 VERSION=2.12.4
-RELEASE=2
+RELEASE=3
 CATEGORY="Net"
 SUMMARY="GTK+ IRC client"
 DESCRIPTION="HexChat is an IRC client based on XChat."
