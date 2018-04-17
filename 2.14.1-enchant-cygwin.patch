@@ -1,0 +1,13 @@
+--- origsrc/hexchat-2.14.1/src/fe-gtk/sexy-spell-entry.c	2018-03-13 21:27:13.000000000 -0500
++++ src/hexchat-2.14.1/src/fe-gtk/sexy-spell-entry.c	2018-04-17 15:53:39.531117200 -0500
+@@ -164,6 +164,10 @@ initialize_enchant (void)
+ #ifdef G_OS_WIN32
+         "libenchant.dll",
+ #endif
++#ifdef G_WITH_CYGWIN
++        "cygenchant-1.dll",
++        "cygenchant-2-2.dll",
++#endif
+ #ifdef G_OS_UNIX
+         "libenchant.so.1",
+         "libenchant.so.2",

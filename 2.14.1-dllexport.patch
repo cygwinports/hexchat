@@ -1,0 +1,256 @@
+--- origsrc/hexchat-2.14.1/plugins/perl/perl.c	2018-03-13 21:27:13.000000000 -0500
++++ src/hexchat-2.14.1/plugins/perl/perl.c	2018-04-17 16:05:34.444195800 -0500
+@@ -604,7 +604,6 @@ print_cb (char *word[], void *userdata)
+  *
+  */
+ 
+-static
+ XS (XS_HexChat_register)
+ {
+ 	char *name, *version, *desc, *filename;
+@@ -629,7 +628,6 @@ XS (XS_HexChat_register)
+ 
+ 
+ /* HexChat::print(output) */
+-static
+ XS (XS_HexChat_print)
+ {
+ 
+@@ -645,7 +643,6 @@ XS (XS_HexChat_print)
+ 	XSRETURN_EMPTY;
+ }
+ 
+-static
+ XS (XS_HexChat_emit_print)
+ {
+ 	char *event_name;
+@@ -699,7 +696,6 @@ XS (XS_HexChat_emit_print)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_send_modes)
+ {
+ 	AV *p_targets = NULL;
+@@ -752,7 +748,6 @@ XS (XS_HexChat_send_modes)
+ 		g_free ((char**) targets);
+ 	}
+ }
+-static
+ XS (XS_HexChat_get_info)
+ {
+ 	SV *temp = NULL;
+@@ -791,7 +786,6 @@ XS (XS_HexChat_get_info)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_context_info)
+ {
+ 	const char *const *fields;
+@@ -805,7 +799,6 @@ XS (XS_HexChat_context_info)
+ 	XSRETURN (1);
+ }
+ 
+-static
+ XS (XS_HexChat_get_prefs)
+ {
+ 	const char *str;
+@@ -843,7 +836,6 @@ XS (XS_HexChat_get_prefs)
+ }
+ 
+ /* HexChat::Internal::hook_server(name, priority, callback, userdata) */
+-static
+ XS (XS_HexChat_hook_server)
+ {
+ 
+@@ -880,7 +872,6 @@ XS (XS_HexChat_hook_server)
+ }
+ 
+ /* HexChat::Internal::hook_command(name, priority, callback, help_text, userdata) */
+-static
+ XS (XS_HexChat_hook_command)
+ {
+ 	char *name;
+@@ -925,7 +916,6 @@ XS (XS_HexChat_hook_command)
+ }
+ 
+ /* HexChat::Internal::hook_print(name, priority, callback, [userdata]) */
+-static
+ XS (XS_HexChat_hook_print)
+ {
+ 
+@@ -960,7 +950,6 @@ XS (XS_HexChat_hook_print)
+ }
+ 
+ /* HexChat::Internal::hook_timer(timeout, callback, userdata) */
+-static
+ XS (XS_HexChat_hook_timer)
+ {
+ 	int timeout;
+@@ -995,7 +984,6 @@ XS (XS_HexChat_hook_timer)
+ }
+ 
+ /* HexChat::Internal::hook_fd(fd, callback, flags, userdata) */
+-static
+ XS (XS_HexChat_hook_fd)
+ {
+ 	int fd;
+@@ -1044,7 +1032,6 @@ XS (XS_HexChat_hook_fd)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_unhook)
+ {
+ 	hexchat_hook *hook;
+@@ -1080,7 +1067,6 @@ XS (XS_HexChat_unhook)
+ }
+ 
+ /* HexChat::Internal::command(command) */
+-static
+ XS (XS_HexChat_command)
+ {
+ 	char *cmd = NULL;
+@@ -1096,7 +1082,6 @@ XS (XS_HexChat_command)
+ 	XSRETURN_EMPTY;
+ }
+ 
+-static
+ XS (XS_HexChat_find_context)
+ {
+ 	char *server = NULL;
+@@ -1152,7 +1137,6 @@ XS (XS_HexChat_find_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_get_context)
+ {
+ 	dXSARGS;
+@@ -1163,7 +1147,6 @@ XS (XS_HexChat_get_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_set_context)
+ {
+ 	hexchat_context *ctx;
+@@ -1176,7 +1159,6 @@ XS (XS_HexChat_set_context)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_nickcmp)
+ {
+ 	dXSARGS;
+@@ -1188,7 +1170,6 @@ XS (XS_HexChat_nickcmp)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_get_list)
+ {
+ 	SV *name;
+@@ -1229,7 +1210,6 @@ XS (XS_HexChat_get_list)
+ 	}
+ }
+ 
+-static
+ XS (XS_HexChat_Embed_plugingui_remove)
+ {
+ 	void *gui_entry;
+@@ -1243,7 +1223,6 @@ XS (XS_HexChat_Embed_plugingui_remove)
+ 	XSRETURN_EMPTY;
+ }
+ 
+-static
+ XS (XS_HexChat_plugin_pref_set)
+ {
+ 	dMARK;
+@@ -1253,7 +1232,6 @@ XS (XS_HexChat_plugin_pref_set)
+ 													SvPV_nolen (ST (1))));
+ }
+ 
+-static
+ XS (XS_HexChat_plugin_pref_get)
+ {
+ 	int result;
+@@ -1270,7 +1248,6 @@ XS (XS_HexChat_plugin_pref_get)
+ 	XSRETURN_UNDEF;
+ }
+ 
+-static
+ XS (XS_HexChat_plugin_pref_delete)
+ {
+ 	dMARK;
+@@ -1279,7 +1256,6 @@ XS (XS_HexChat_plugin_pref_delete)
+ 	XSRETURN_IV ((IV) hexchat_pluginpref_delete (ph, SvPV_nolen (ST (0))));
+ }
+ 
+-static
+ XS (XS_HexChat_plugin_pref_list)
+ {
+ 	char list[4096];
+@@ -1578,6 +1554,9 @@ perl_command_eval (char *word[], char *w
+ 	return HEXCHAT_EAT_HEXCHAT;
+ }
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ void
+ hexchat_plugin_get_info (char **name, char **desc, char **version,
+ 							  void **reserved)
+@@ -1594,6 +1573,9 @@ hexchat_plugin_get_info (char **name, ch
+ 
+ static int initialized = 0;
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ int
+ hexchat_plugin_init (hexchat_plugin * plugin_handle, char **plugin_name,
+ 						 char **plugin_desc, char **plugin_version, char *arg)
+@@ -1633,6 +1615,9 @@ hexchat_plugin_init (hexchat_plugin * pl
+ 	return 1;
+ }
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ int
+ hexchat_plugin_deinit (hexchat_plugin * plugin_handle)
+ {
+--- origsrc/hexchat-2.14.1/plugins/python/python.c	2018-03-13 21:27:13.000000000 -0500
++++ src/hexchat-2.14.1/plugins/python/python.c	2018-04-17 16:16:43.518350300 -0500
+@@ -2674,6 +2674,9 @@ Command_Unload(char *word[], char *word_
+ static int initialized = 0;
+ static int reinit_tried = 0;
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ void
+ hexchat_plugin_get_info(char **name, char **desc, char **version, void **reserved)
+ {
+@@ -2684,6 +2687,9 @@ hexchat_plugin_get_info(char **name, cha
+       *reserved = NULL;
+ }
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ int
+ hexchat_plugin_init(hexchat_plugin *plugin_handle,
+ 		  char **plugin_name,
+@@ -2778,6 +2784,9 @@ hexchat_plugin_init(hexchat_plugin *plug
+ 	return 1;
+ }
+ 
++#ifdef __CYGWIN__
++__declspec(dllexport)
++#endif
+ int
+ hexchat_plugin_deinit(void)
+ {

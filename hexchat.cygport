@@ -1,15 +1,16 @@
+inherit meson
+
 NAME="hexchat"
-VERSION=2.12.4
-RELEASE=3
+VERSION=2.14.1
+RELEASE=1
 CATEGORY="Net"
 SUMMARY="GTK+ IRC client"
 DESCRIPTION="HexChat is an IRC client based on XChat."
 HOMEPAGE="http://hexchat.org/"
 SRC_URI="https://dl.hexchat.net/hexchat/hexchat-${VERSION}.tar.xz"
 PATCH_URI="
-	2.10.0-perl-xs.patch
-	2.12.1-no-undefined.patch
-	2.12.3-enchant-cygwin.patch
+	2.14.1-dllexport.patch
+	2.14.1-enchant-cygwin.patch
 "
 
 PKG_NAMES="${NAME} ${NAME}-devel ${NAME}-lua ${NAME}-perl ${NAME}-python"
@@ -29,3 +30,5 @@ hexchat_python_REQUIRES=${NAME}
 hexchat_python_CONTENTS="usr/lib/hexchat/plugins/python.dll"
 
 DIFF_EXCLUDES="inline_pngs.h *.pm.h"
+
+CYGMESON_ARGS="-Dwith-sysinfo=false"
